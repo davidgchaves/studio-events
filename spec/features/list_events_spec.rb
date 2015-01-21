@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Viewing the list of events" do
-  it "shows the event" do
+  it "shows the events" do
     event1 = Event.create name: "BugSmash",
                           location: "Denver",
                           price: 10.00,
