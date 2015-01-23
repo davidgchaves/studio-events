@@ -19,4 +19,12 @@ describe "Navigating events" do
 
     expect(current_path).to eq event_path(event)
   end
+
+  it "allows navigation from the detail page to the edit page" do
+    visit event_url(event)
+
+    click_link "Edit"
+
+    expect(current_path).to eq edit_event_path(event)
+  end
 end
