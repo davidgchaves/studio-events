@@ -2,9 +2,9 @@ require "rails_helper"
 require "support/attributes"
 
 describe "Navigating events" do
+  let!(:event) { Event.create event_attributes }
 
   it "allows navigation from the detail page to the listing page" do
-    event = Event.create event_attributes
     visit event_url(event)
 
     click_link "All Events"
@@ -13,7 +13,6 @@ describe "Navigating events" do
   end
 
   it "allows navigation from the listing page to the detail page" do
-    event = Event.create event_attributes
     visit events_url
 
     click_link event.name
