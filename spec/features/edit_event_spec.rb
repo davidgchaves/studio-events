@@ -10,4 +10,15 @@ describe "Editing an event" do
 
     expect(find_field('Name').value).to eq event.name
   end
+
+  it "shows the event's updated details" do
+    event = Event.create event_attributes
+    visit event_url(event)
+    click_link "Edit"
+    fill_in "Name", with: "Updated Event Name"
+
+    click_button "Update Event"
+
+    expect(page).to have_text "Updated Event Name"
+  end
 end
