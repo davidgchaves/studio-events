@@ -10,4 +10,8 @@ class EventsController < ApplicationController
   def edit
     @event = Event.find params[:id]
   end
+
+  def update
+    redirect_to event_path
+  end
 end
