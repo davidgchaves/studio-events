@@ -11,6 +11,10 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
+  def create
+    redirect_to event_path(Event.create)
+  end
+
   def edit
     @event = Event.find params[:id]
   end
