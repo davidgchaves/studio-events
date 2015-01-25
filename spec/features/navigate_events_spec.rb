@@ -36,4 +36,12 @@ describe "Navigating events" do
 
     expect(current_path).to eq event_path(event)
   end
+
+  it "allows navigation from the listing page to the create page" do
+    visit events_url
+
+    click_link "Add New Event"
+
+    expect(current_path).to eq new_event_path
+  end
 end
