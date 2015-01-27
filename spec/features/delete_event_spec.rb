@@ -2,12 +2,18 @@ require "rails_helper"
 require "support/attributes"
 
 describe "Deleting an event" do
-  it "shows the event listing without the deleted event" do
-    event = Event.create event_attributes
+  let!(:event) { Event.create event_attributes }
+
+  before do
     visit event_url(event)
-
     click_link "Delete"
+  end
 
+  it "redirects to the listing page destroying the event" do
+    expect(current_path).to eq events_path
+  end
+
+  it "shows the event listing without the deleted event" do
     expect(page).not_to have_text event.name
     expect(page).not_to have_text event.description
   end
