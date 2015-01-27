@@ -2,9 +2,9 @@ require "rails_helper"
 require "support/attributes"
 
 describe "Viewing an individual event" do
-  it "shows the event's details" do
-    event = Event.create event_attributes
+  let! (:event) { Event.create event_attributes }
 
+  it "shows the event's details" do
     visit event_url(event)
 
     expect(page).to have_text event.name
@@ -27,5 +27,13 @@ describe "Viewing an individual event" do
     visit event_url(event)
 
     expect(page).to have_text "Free"
+  end
+
+  it "allows navigation to the listing page" do
+    visit event_url(event)
+
+    click_link "All Events"
+
+    expect(current_path).to eq events_path
   end
 end

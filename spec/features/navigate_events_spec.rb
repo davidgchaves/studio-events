@@ -4,14 +4,6 @@ require "support/attributes"
 describe "Navigating events" do
   let!(:event) { Event.create event_attributes }
 
-  it "allows navigation from the detail page to the listing page" do
-    visit event_url(event)
-
-    click_link "All Events"
-
-    expect(current_path).to eq events_path
-  end
-
   it "allows navigation from the detail page to the edit page" do
     visit event_url(event)
 
