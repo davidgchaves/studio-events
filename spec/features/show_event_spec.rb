@@ -11,6 +11,8 @@ describe "Viewing an individual event" do
     expect(page).to have_text event.location
     expect(page).to have_text event.description
     expect(page).to have_text event.starts_at
+    expect(page).to have_text event.capacity
+    expect(page).to have_selector "img[src$='#{event.image_file_name}']"
   end
 
   it "shows the price if the price is not $0" do

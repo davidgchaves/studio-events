@@ -14,6 +14,8 @@ describe "Creating a new event" do
     expect(find_field("Name").value).to eq nil
     expect(find_field("Location").value).to eq nil
     expect(find_field("Price").value).to eq nil
+    expect(find_field("Capacity").value).to eq "1"
+    expect(find_field("Image file name").value).to eq nil
   end
 
   context "when done" do
@@ -22,6 +24,8 @@ describe "Creating a new event" do
       fill_in "Description", with: "Sling some code with a cup o' Joe!"
       fill_in "Location", with: "Portland, OR"
       fill_in "Price", with: 0.00
+      fill_in "Capacity", with: 50
+      fill_in "Image file name", with: "coffeecode.png"
       #select (10.days.from_now).to_s, from: "event_starts_at_1i"
 
       click_button "Create Event"
