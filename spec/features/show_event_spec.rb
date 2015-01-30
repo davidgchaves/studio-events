@@ -24,9 +24,9 @@ describe "Viewing an individual event" do
   end
 
   it "shows 'Free' if the price is $0" do
-    event = Event.create event_attributes(price: 0)
+    free_event = Event.create event_attributes(price: 0)
 
-    visit event_url(event)
+    visit event_url(free_event)
 
     expect(page).to have_text "Free"
   end
