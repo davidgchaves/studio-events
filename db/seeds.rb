@@ -12,20 +12,35 @@ Event.create! [
     location: 'Denver',
     price: 0.00,
     description: 'A fun evening of bug smashing!',
-    starts_at: 10.days.from_now
+    starts_at: 10.days.from_now,
+    capacity: 55,
+    image_file_name: "bugsmash.png"
   },
   {
     name: 'Hackathon',
     location: 'Austin',
     price: 15.00,
     description: 'Hunker down at the Hackathon!',
-    starts_at: 15.days.from_now
+    starts_at: 15.days.from_now,
+    capacity: 222,
+    image_file_name: "hackaton.png"
   },
   {
     name: 'Kata Camp',
     location: 'Dallas',
     price: 75.00,
     description: 'Practice your craft kata style!',
-    starts_at: 30.days.from_now
+    starts_at: 30.days.from_now,
+    capacity: 333,
+    image_file_name: "katacamp.png"
+  },
+  {
+    name: "Coffee and Code",
+    location: "Stumpron Coffee, Portland",
+    price: 0.00,
+    description: "Start your day off right with a delicious cup of coffee",
+    starts_at: 1.year.ago,
+    capacity: 111,
+    image_file_name: "coffeecode.png"
   }
 ]
