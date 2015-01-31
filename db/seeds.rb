@@ -23,7 +23,7 @@ Event.create! [
     description: 'Hunker down at the Hackathon!',
     starts_at: 15.days.from_now,
     capacity: 222,
-    image_file_name: "hackaton.png"
+    image_file_name: "hackathon.png"
   },
   {
     name: 'Kata Camp',

@@ -23,7 +23,7 @@ describe "Viewing the list of events" do
                                description: "Hunker down at the Hackathon",
                                starts_at: 15.days.from_now,
                                capacity: 222,
-                               image_file_name: "hackaton.png" }
+                               image_file_name: "hackathon.png" }
 
   let!(:event3) { Event.create name: "Kata Camp",
                                location: "Dallas",
