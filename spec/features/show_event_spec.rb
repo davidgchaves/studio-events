@@ -46,12 +46,4 @@ describe "Viewing an individual event" do
 
     expect(page).to have_selector "img[src$='placeholder.png']"
   end
-
-  it "allows navigation to the listing page" do
-    visit event_url(event)
-
-    click_link "All Events"
-
-    expect(current_path).to eq events_path
-  end
 end
