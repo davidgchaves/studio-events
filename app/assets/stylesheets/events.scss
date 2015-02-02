@@ -2,10 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "colors";
+
 article.event {
   img {
     float: left;
     margin: 0 20px;
-    border: 3px solid #F0F0F0;
+    border: 3px solid $secondary-color;
   }
 }
