@@ -6,11 +6,11 @@ header#page-header {
   background-color: $primary-color;
   padding: 5px;
   border-bottom: 5px solid darken($primary-color, 25%);
-}
 
-header#page-header h1 {
-  text-align: center;
-  text-transform: uppercase;
+  h1 {
+    text-align: center;
+    text-transform: uppercase;
+  }
 }
 
 footer#page-footer {
