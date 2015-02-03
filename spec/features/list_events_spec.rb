@@ -36,7 +36,7 @@ describe "Viewing the list of events" do
   before { visit events_url }
 
   it "shows the upcoming events" do
-    expect(page).to have_text "3 Events"
+    expect(page).to have_text "Events"
     expect(page).to have_text event1.name
     expect(page).to have_text event2.name
     expect(page).to have_text event3.name

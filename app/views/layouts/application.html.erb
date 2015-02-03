@@ -9,8 +9,16 @@
 <body>
 
 <%= render 'layouts/header' %>
-<%= render 'layouts/sidebar' %>
-<%= yield %>
+
+<div id="wrapper">
+  <div id="container">
+    <%= render 'layouts/sidebar' %>
+    <section id="content">
+      <%= yield %>
+    </section>
+  </div>
+</div>
+
 <%= render 'layouts/footer' %>
 
 </body>
