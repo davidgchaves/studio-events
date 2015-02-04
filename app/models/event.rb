@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
-  validates :name, :description, :location, presence: true
+  validates :name, :location, presence: true
+  validates :description, length: { minimum: 25 }
 
   def free?
     price.blank? || price.zero?
