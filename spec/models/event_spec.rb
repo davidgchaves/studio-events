@@ -63,4 +63,12 @@ describe "An event" do
 
     expect(event.errors[:location].any?).to eq true
   end
+
+  it "requires a price equal to $0 or higher" do
+    event = Event.new price: -1.00
+
+    event.valid?
+
+    expect(event.errors[:price].any?).to eq true
+  end
 end
