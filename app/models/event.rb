@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  validates :name, :description, presence: true
+  validates :name, :description, :location, presence: true
 
   def free?
     price.blank? || price.zero?
