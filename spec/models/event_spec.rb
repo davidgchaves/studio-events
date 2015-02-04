@@ -47,4 +47,12 @@ describe "An event" do
 
     expect(event.errors[:name].any?).to eq true
   end
+
+  it "requires a description" do
+    event = Event.new description: ""
+
+    event.valid?
+
+    expect(event.errors[:description].any?).to eq true
+  end
 end
