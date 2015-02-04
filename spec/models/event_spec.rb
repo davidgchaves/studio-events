@@ -38,4 +38,12 @@ describe "An event" do
 
     expect(Event.upcoming).to eq [event3, event2, event1]
   end
+
+  it "requires a name" do
+    event = Event.new name: ""
+
+    event.valid?
+
+    expect(event.errors[:name].any?).to eq true
+  end
 end
