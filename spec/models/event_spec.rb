@@ -1,4 +1,5 @@
 require "rails_helper"
+require "support/attributes"
 
 describe "An event" do
   it "is free if the price is $0" do
@@ -20,7 +21,7 @@ describe "An event" do
   end
 
   it "is upcoming if the starts at date is in the future" do
-    event = Event.create starts_at: 3.days.from_now
+    event = Event.create event_attributes(starts_at: 3.days.from_now)
 
     expect(Event.upcoming).to include event
   end
@@ -32,9 +33,9 @@ describe "An event" do
   end
 
   it "returns upcoming events ordered with the most recently-upcoming event first" do
-    event1 = Event.create starts_at: 3.months.from_now
-    event2 = Event.create starts_at: 2.months.from_now
-    event3 = Event.create starts_at: 1.months.from_now
+    event1 = Event.create event_attributes(starts_at: 3.months.from_now)
+    event2 = Event.create event_attributes(starts_at: 2.months.from_now)
+    event3 = Event.create event_attributes(starts_at: 1.months.from_now)
 
     expect(Event.upcoming).to eq [event3, event2, event1]
   end
