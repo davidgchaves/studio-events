@@ -55,4 +55,12 @@ describe "An event" do
 
     expect(event.errors[:description].any?).to eq true
   end
+
+  it "requires a location" do
+    event = Event.new location: ""
+
+    event.valid?
+
+    expect(event.errors[:location].any?).to eq true
+  end
 end
