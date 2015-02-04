@@ -89,4 +89,34 @@ describe "An event" do
       expect(event.errors[:capacity].any?).to eq true
     end
   end
+
+  it "accepts a blank image filename" do
+    event = Event.new image_file_name: ""
+
+    event.valid?
+
+    expect(event.errors[:image_file_name].any?).to eq false
+  end
+
+  it "accepts properly formatted image file names" do
+    file_names = %w[e.png event.PnG event.jpg eVENT.GIF]
+    file_names.each do |file_name|
+      event = Event.new image_file_name: file_name
+
+      event.valid?
+
+      expect(event.errors[:image_file_name].any?).to eq false
+    end
+  end
+
+  it "rejects improperly formatted image file names" do
+    file_names = %w[event .png .jpg .gif event.pdf event.doc]
+    file_names.each do |file_name|
+      event = Event.new image_file_name: file_name
+
+      event.valid?
+
+      expect(event.errors[:image_file_name].any?).to eq true
+    end
+  end
 end
