@@ -71,4 +71,22 @@ describe "An event" do
 
     expect(event.errors[:price].any?).to eq true
   end
+
+  context "requires a capacity that" do
+    it "is an integer number" do
+      event = Event.new capacity: -3.0
+
+      event.valid?
+
+      expect(event.errors[:capacity].any?).to eq true
+    end
+
+    it "is a positive number" do
+      event = Event.new capacity: 0
+
+      event.valid?
+
+      expect(event.errors[:capacity].any?).to eq true
+    end
+  end
 end
