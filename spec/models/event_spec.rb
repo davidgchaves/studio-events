@@ -48,8 +48,8 @@ describe "An event" do
     expect(event.errors[:name].any?).to eq true
   end
 
-  it "requires a description" do
-    event = Event.new description: ""
+  it "requires a description with at least 25 characters" do
+    event = Event.new description: "X" * 24
 
     event.valid?
 
