@@ -40,8 +40,9 @@ describe "Editing an event" do
       click_button "Update Event"
     end
 
-    it "renders again the edit page" do
+    it "renders again the edit template" do
       expect(current_path).to eq event_path(event)
+      expect(page).to have_text "Editing"
     end
 
     it "shows what was wrong last time" do
