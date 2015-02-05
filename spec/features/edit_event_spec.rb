@@ -17,7 +17,7 @@ describe "Editing an event" do
     expect(find_field('Name').value).to eq event.name
   end
 
-  context "when done" do
+  context "on success" do
     before do
       fill_in "Name", with: "Updated Event Name"
       click_button "Update Event"
@@ -29,6 +29,27 @@ describe "Editing an event" do
 
     it "shows the event's updated details" do
       expect(page).to have_text "Updated Event Name"
+    end
+  end
+
+  context "on failure" do
+    before do
+      fill_in "Name", with: ""
+      fill_in "Description", with: "Sling some code with a cup o' Joe!"
+
+      click_button "Update Event"
+    end
+
+    it "renders again the edit page" do
+      expect(current_path).to eq event_path(event)
+    end
+
+    it "shows what was wrong last time" do
+      expect(page).to have_text "correct the following"
+    end
+
+    it "preserves the event info entered the last time" do
+      expect(page).to have_text "Sling some code with a cup o' Joe"
     end
   end
 end
