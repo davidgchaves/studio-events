@@ -119,4 +119,10 @@ describe "An event" do
       expect(event.errors[:image_file_name].any?).to eq true
     end
   end
+
+  it "is valid with example attributes" do
+    event = Event.new event_attributes
+
+    expect(event.valid?).to eq true
+  end
 end
