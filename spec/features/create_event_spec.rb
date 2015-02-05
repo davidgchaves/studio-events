@@ -48,8 +48,9 @@ describe "Creating a new event" do
       click_button "Create Event"
     end
 
-    it "renders again the create page" do
+    it "renders again the new template" do
       expect(current_path).to eq events_path
+      expect(page).to have_text "Create a New Event"
     end
 
     it "shows what was wrong last time" do
