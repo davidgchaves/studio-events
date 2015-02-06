@@ -38,6 +38,10 @@ describe "Creating a new event" do
     it "shows the new event's details" do
       expect(page).to have_text "Code and Coffee"
     end
+
+    it "flashes an 'event successfully created' message" do
+      expect(page).to have_text "Event successfully created!"
+    end
   end
 
   context "on failure" do
