@@ -17,4 +17,8 @@ describe "Deleting an event" do
     expect(page).not_to have_text event.name
     expect(page).not_to have_text event.description
   end
+
+  it "flashes an 'event successfully deleted' message" do
+    expect(page).to have_text "Event successfully deleted!"
+  end
 end
