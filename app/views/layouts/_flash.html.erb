@@ -4,6 +4,9 @@
   </p>
 <% end %>
 
-<p class="flash alert">
-  <%= flash[:alert] %>
-</p>
+<% if flash[:alert] %>
+  <p class="flash alert">
+    <%= flash[:alert] %>
+  </p>
+<% end %>
+
