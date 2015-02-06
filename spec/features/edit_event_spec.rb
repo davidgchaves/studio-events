@@ -30,6 +30,10 @@ describe "Editing an event" do
     it "shows the event's updated details" do
       expect(page).to have_text "Updated Event Name"
     end
+
+    it "flashes an 'event succesfully updated' message" do
+      expect(page).to have_text "Event successfully updated!"
+    end
   end
 
   context "on failure" do
