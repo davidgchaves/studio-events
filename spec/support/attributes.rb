@@ -1,4 +1,4 @@
-def event_attributes (overrides = {})
+def event_attributes(overrides = {})
   {
     name: "BugSmash",
     location: "Denver",
