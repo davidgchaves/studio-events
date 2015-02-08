@@ -63,5 +63,11 @@ describe "A registration" do
       expect(valid_registration.errors[:how_heard].any?).to eq false
     end
   end
+
+  it "is valid with example attributes" do
+    registration = Registration.new registration_attributes
+
+    expect(registration.valid?).to eq true
+  end
 end
 
