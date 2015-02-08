@@ -2,6 +2,16 @@ require "rails_helper"
 require "support/attributes"
 
 describe "An event" do
+  it "has many registrations" do
+    event = Event.new event_attributes
+
+    registration1 = event.registrations.new registration_attributes
+    registration2 = event.registrations.new registration_attributes
+
+    expect(event.registrations).to include registration1
+    expect(event.registrations).to include registration2
+  end
+
   it "is free if the price is $0" do
     event = Event.new price: 0
 
