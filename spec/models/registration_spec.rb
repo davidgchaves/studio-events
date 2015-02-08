@@ -1,5 +1,13 @@
 require 'rails_helper'
+require 'support/attributes'
 
-RSpec.describe Registration, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe "A registration" do
+  it "belongs to an event" do
+    event = Event.create event_attributes
+
+    registration = event.registrations.new name: "Moe", email: "moe@stoogies.com", how_heard: "Internet"
+
+    expect(registration.event).to eq event
+  end
 end
+
