@@ -12,6 +12,14 @@ describe "An event" do
     expect(event.registrations).to include registration2
   end
 
+  it "deletes associated registrations" do
+    event = Event.create event_attributes
+
+    event.registrations.create registration_attributes
+
+    expect{event.destroy}.to change(Registration, :count).by -1
+  end
+
   it "is free if the price is $0" do
     event = Event.new price: 0
 
