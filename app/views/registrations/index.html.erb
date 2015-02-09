@@ -2,7 +2,7 @@
   <h1>Registrations for <%= link_to @event.name, @event %></h1>
 </header>
 
-<ol>
+<ol id="registrations">
   <% @registrations.each do |registration| %>
     <li>
       <%= mail_to registration.email, registration.name %>
