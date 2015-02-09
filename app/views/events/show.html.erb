@@ -16,7 +16,7 @@
   <h3>Capacity</h3>
   <p><%= pluralize @event.capacity, 'spot' %></p>
 
-  <%= link_to "Who's Registered?", event_registrations_path(@event) %>
+  <%= link_to "Who's Registered?", event_registrations_path(@event), class: "button" %>
 
   <footer>
     <nav>
