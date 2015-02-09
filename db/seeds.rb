@@ -115,3 +115,11 @@ Event.create! [
   }
 ]
 
+bug_smash = Event.find_by name: "BugSmash"
+bug_smash.registrations.create! name: "Larry", email: "larry@stooges.com", how_heard: "Newsletter"
+bug_smash.registrations.create! name: "Moe", email: "moe@stooges.com", how_heard: "Blog Post"
+bug_smash.registrations.create! name: "Curly", email: "curly@stooges.com", how_heard: "Twitter"
+
+kata_camp = Event.find_by name: "Kata Camp"
+kata_camp.registrations.create! name: "Moe", email: "moe@stooges.com", how_heard: "Web Search"
+
