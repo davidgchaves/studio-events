@@ -20,7 +20,6 @@ describe "A registration" do
 
   it "accepts properly formatted emails" do
     valid_emails = ["moe.sTOO@stoogies.com", "moe.sTOO@st.o.gies.com"]
-
     valid_emails.each do |valid_email|
       valid_registration = Registration.new email: valid_email
 
@@ -32,7 +31,6 @@ describe "A registration" do
 
   it "rejects improperly formatted emails" do
     invalid_emails = ["@", "moe stoo@stoogies.com", "moe.stoo@sto ogies.com"]
-
     invalid_emails.each do |invalid_email|
       invalid_registration = Registration.new email: invalid_email
 
