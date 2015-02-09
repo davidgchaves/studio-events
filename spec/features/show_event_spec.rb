@@ -46,4 +46,13 @@ describe "Viewing an individual event" do
 
     expect(page).to have_selector "img[src$='placeholder.png']"
   end
+
+  it "allows navigation to the associated registrations" do
+    event = Event.create event_attributes
+    visit event_url(event)
+
+    click_link "Who's Registered?"
+
+    expect(current_path).to eq event_registrations_path(event)
+  end
 end
