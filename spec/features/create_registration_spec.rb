@@ -16,4 +16,12 @@ describe "Creating a new registration for an event" do
   it "shows a header with the event for which we are registering" do
     expect(page).to have_text event.name
   end
+
+  it "shows the form to create an event's registration" do
+    expect(find_field("Name").value).to eq nil
+    expect(find_field("Email").value).to eq nil
+    expect(find_field("How heard").visible?).to eq true
+    expect(find_button("Create Registration").visible?).to eq true
+    expect(find_link("Cancel").visible?).to eq true
+  end
 end
