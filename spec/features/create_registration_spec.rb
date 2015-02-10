@@ -42,5 +42,9 @@ describe "Creating a new registration for an event" do
       expect(page).to have_text "Larry"
       expect(page).to have_text "Twitter"
     end
+
+    it "flashes a 'Thanks, you're registered!' message" do
+      expect(page).to have_text "Thanks, you're registered!"
+    end
   end
 end
