@@ -20,4 +20,8 @@ class Event < ActiveRecord::Base
   def spots_left
     capacity - registrations.size
   end
+
+  def sold_out?
+    spots_left.zero?
+  end
 end
