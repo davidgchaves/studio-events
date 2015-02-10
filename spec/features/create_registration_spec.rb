@@ -24,4 +24,16 @@ describe "Creating a new registration for an event" do
     expect(find_button("Create Registration").visible?).to eq true
     expect(find_link("Cancel").visible?).to eq true
   end
+
+  context "on success" do
+    it "redirects to the registration's listing page for that event" do
+      fill_in "Name", with: "Larry"
+      fill_in "Email", with: "larry@stooges.com"
+      select "Twitter", from: "How heard"
+
+      click_button "Create Registration"
+
+      expect(current_path).to eq event_registrations_path(event)
+    end
+  end
 end
