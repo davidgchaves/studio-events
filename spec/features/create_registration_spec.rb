@@ -50,13 +50,19 @@ describe "Creating a new registration for an event" do
   end
 
   context "on failure" do
-    it "renders again the new template" do
+    before do
       fill_in "Name", with: ""
 
       click_button "Create Registration"
+    end
 
+    it "renders again the new template" do
       expect(current_path).to eq event_registrations_path(event)
       expect(page).to have_button "Create Registration"
+    end
+
+    it "shows what was wrong last time" do
+      expect(page).to have_text "correct the following"
     end
   end
 end
