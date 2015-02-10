@@ -12,6 +12,7 @@ describe "Viewing an individual event" do
     expect(page).to have_text event.description
     expect(page).to have_text event.starts_at
     expect(page).to have_text event.capacity
+    expect(page).to have_text "#{event.capacity} spots available"
     # expect(page).to have_selector "img[src$='#{event.image_file_name}']"
   end
 
