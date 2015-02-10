@@ -11,8 +11,12 @@ class RegistrationsController < ApplicationController
 
   def create
     @event = Event.find params[:event_id]
-    @registration = @event.registrations.create registration_params
-    redirect_to event_registrations_path(@event), notice: "Thanks, you're registered!"
+    @registration = @event.registrations.new registration_params
+    if @registration.save
+      redirect_to event_registrations_path(@event), notice: "Thanks, you're registered!"
+    else
+      render :new
+    end
   end
 
   private
