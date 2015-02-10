@@ -56,4 +56,30 @@ describe "Viewing an individual event" do
 
     expect(current_path).to eq event_registrations_path(event)
   end
+
+  it "shows a registration link when there's available spots" do
+    event = Event.create event_attributes(capacity: 5)
+    2.times { event.registrations.create registration_attributes }
+
+    visit event_url(event)
+
+    expect(page).to have_link "Register!"
+  end
+
+  context "when is sold out" do
+    before do
+      event = Event.create event_attributes(capacity: 3)
+      3.times { event.registrations.create registration_attributes }
+
+      visit event_url(event)
+    end
+
+    it "doesn't show a registration link" do
+      expect(page).not_to have_link "Register!"
+    end
+
+    it "shows a 'Sold Out!' message" do
+      expect(page).to have_text "Sold Out!"
+    end
+  end
 end
