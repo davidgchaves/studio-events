@@ -11,6 +11,12 @@ class RegistrationsController < ApplicationController
 
   def create
     @event = Event.find params[:event_id]
+    @registration = @event.registrations.create registration_params
     redirect_to event_registrations_path(@event)
   end
+
+  private
+    def registration_params
+      params.require(:registration).permit :name, :email, :how_heard
+    end
 end
