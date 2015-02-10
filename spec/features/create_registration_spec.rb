@@ -6,6 +6,7 @@ describe "Creating a new registration for an event" do
 
   before do
     visit event_url(event)
+
     click_link "Register!"
   end
 
