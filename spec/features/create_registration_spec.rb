@@ -26,14 +26,21 @@ describe "Creating a new registration for an event" do
   end
 
   context "on success" do
-    it "redirects to the registration's listing page for that event" do
+    before do
       fill_in "Name", with: "Larry"
       fill_in "Email", with: "larry@stooges.com"
       select "Twitter", from: "How heard"
 
       click_button "Create Registration"
+    end
 
+    it "redirects to the registration's listing page for that event" do
       expect(current_path).to eq event_registrations_path(event)
+    end
+
+    it "shows the new registration's details" do
+      expect(page).to have_text "Larry"
+      expect(page).to have_text "Twitter"
     end
   end
 end
