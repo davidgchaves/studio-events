@@ -48,4 +48,15 @@ describe "Creating a new registration for an event" do
       expect(page).to have_text "Thanks, you're registered!"
     end
   end
+
+  context "on failure" do
+    it "renders again the new template" do
+      fill_in "Name", with: ""
+
+      click_button "Create Registration"
+
+      expect(current_path).to eq event_registrations_path(event)
+      expect(page).to have_button "Create Registration"
+    end
+  end
 end
