@@ -5,22 +5,22 @@
 <%= form_for [@event, @registration] do |f| %>
   <fieldset>
     <ol>
-      <li>
+      <li class="required">
         <%= f.label :name %>
         <%= f.text_field :name %>
       </li>
-      <li>
+      <li class="required">
         <%= f.label :email %>
         <%= f.text_field :email %>
       </li>
-      <li>
+      <li class="required">
         <%= f.label :how_heard %>
         <%= f.select :how_heard, Registration::HOW_HEARD_OPTIONS, prompt: "Pick one" %>
       </li>
     </ol>
     <p>
       <%= f.submit %>
-      <%= link_to "Cancel", events_path %>
+      <%= link_to "Cancel", events_path, class: "button" %>
     </p>
   </fieldset>
 <% end %>
