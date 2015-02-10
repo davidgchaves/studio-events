@@ -3,6 +3,8 @@
 </header>
 
 <%= form_for [@event, @registration] do |f| %>
+  <%= render 'shared/errors', object: @registration %>
+
   <fieldset>
     <ol>
       <li class="required">
