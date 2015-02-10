@@ -9,11 +9,11 @@
     <ol>
       <li class="required">
         <%= f.label :name %>
-        <%= f.text_field :name %>
+        <%= f.text_field :name, size: 40, autofocus: true %>
       </li>
       <li class="required">
         <%= f.label :email %>
-        <%= f.text_field :email %>
+        <%= f.text_field :email, size: 40 %>
       </li>
       <li class="required">
         <%= f.label :how_heard %>
