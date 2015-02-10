@@ -2,9 +2,10 @@ require "rails_helper"
 require "support/attributes"
 
 describe "Viewing an individual event" do
-  let! (:event) { Event.create event_attributes }
 
   it "shows the event's details" do
+    event = Event.create event_attributes
+
     visit event_url(event)
 
     expect(page).to have_text event.name
