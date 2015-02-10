@@ -1,4 +1,5 @@
 require "rails_helper"
+require "support/attributes"
 
 describe "Viewing the list of events" do
   let!(:event1) { Event.create event_attributes(name: "BugSmash") }
@@ -18,7 +19,6 @@ describe "Viewing the list of events" do
     expect(page).to have_text event1.description[0..10]
     expect(page).to have_text event1.starts_at
     expect(page).to have_text "$10.00"
-    expect(page).to have_text event1.capacity
     expect(page).to have_selector "img[src$='#{event1.image_file_name}']"
   end
 
@@ -34,5 +34,14 @@ describe "Viewing the list of events" do
     click_link event2.name
 
     expect(current_path).to eq event_path(event2)
+  end
+
+  it "shows the available spots for each event" do
+    event = Event.create event_attributes(capacity: 5)
+    2.times { event.registrations.create registration_attributes }
+
+    visit events_url
+
+    expect(page).to have_text "3 spots available"
   end
 end
