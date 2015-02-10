@@ -150,4 +150,18 @@ describe "An event" do
 
     expect(event.spots_left).to eq 5-3
   end
+
+  it "is sold out if there's no available spots" do
+    event = Event.create event_attributes(capacity: 3)
+    3.times { event.registrations.create registration_attributes }
+
+    expect(event).to be_sold_out
+  end
+
+  it "is not sold out if there's available spots" do
+    event = Event.create event_attributes(capacity: 500)
+    3.times { event.registrations.create registration_attributes }
+
+    expect(event).not_to be_sold_out
+  end
 end
