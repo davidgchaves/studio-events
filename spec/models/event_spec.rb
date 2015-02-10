@@ -143,4 +143,11 @@ describe "An event" do
 
     expect(event.valid?).to eq true
   end
+
+  it "calculates the available spots" do
+    event = Event.create event_attributes(capacity: 5)
+    3.times { event.registrations.create registration_attributes }
+
+    expect(event.spots_left).to eq 5-3
+  end
 end
