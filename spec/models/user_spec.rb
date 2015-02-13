@@ -41,5 +41,17 @@ describe User do
         expect(invalid_user.errors[:email].any?).to be_truthy
       end
     end
+
+    it "requires to be unique and case insensitive" do
+      user1 = User.create name: "Example User",
+                          email: "user@example.com",
+                          password: "secret",
+                          password_confirmation: "secret"
+      user2 = User.new email: user1.email.upcase
+
+      user2.valid?
+
+      expect(user2.errors[:email].any?).to be_truthy
+    end
   end
 end
