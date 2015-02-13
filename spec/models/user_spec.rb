@@ -53,6 +53,16 @@ describe User do
     end
   end
 
+  context "password" do
+    it "can't be empty" do
+      invalid_user = User.new password: ""
+
+      invalid_user.valid?
+
+      expect(invalid_user.errors[:password].any?).to be_truthy
+    end
+  end
+
   context "with example attributes" do
     it "is valid" do
       user = User.new user_attributes
