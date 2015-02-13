@@ -63,6 +63,13 @@ describe User do
     end
 
     context "when present" do
+      it "is automatically encrypted into the password_digest attribute" do
+        user = User.new password: "secret"
+
+        expect(user.password_digest.present?).to be_truthy
+
+      end
+
       it "has to match the password confirmation" do
         invalid_user = User.new password: "secret", password_confirmation: "nomatch"
 
