@@ -4,21 +4,21 @@ require 'support/attributes'
 describe User do
   describe "name" do
     it "can't be empty" do
-      user = User.new name: ""
+      invalid_user = User.new name: ""
 
-      user.valid?
+      invalid_user.valid?
 
-      expect(user.errors[:name].any?).to be_truthy
+      expect(invalid_user.errors[:name].any?).to be_truthy
     end
   end
 
   describe "email" do
     it "can't be empty" do
-      user = User.new email: ""
+      invalid_user = User.new email: ""
 
-      user.valid?
+      invalid_user.valid?
 
-      expect(user.errors[:email].any?).to be_truthy
+      expect(invalid_user.errors[:email].any?).to be_truthy
     end
 
     it "accepts properly formatted emails" do
@@ -44,12 +44,12 @@ describe User do
     end
 
     it "requires to be unique and case insensitive" do
-      user1 = User.create user_attributes
-      user2 = User.new email: user1.email.upcase
+      valid_user = User.create user_attributes
+      invalid_user = User.new email: valid_user.email.upcase
 
-      user2.valid?
+      invalid_user.valid?
 
-      expect(user2.errors[:email].any?).to be_truthy
+      expect(invalid_user.errors[:email].any?).to be_truthy
     end
   end
 
