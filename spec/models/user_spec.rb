@@ -61,6 +61,16 @@ describe User do
 
       expect(invalid_user.errors[:password].any?).to be_truthy
     end
+
+    context "when present" do
+      it "has to match the password confirmation" do
+        invalid_user = User.new password: "secret", password_confirmation: "nomatch"
+
+        invalid_user.valid?
+
+        expect(invalid_user.errors[:password_confirmation]).to eq ["doesn't match Password"]
+      end
+    end
   end
 
   context "with example attributes" do
