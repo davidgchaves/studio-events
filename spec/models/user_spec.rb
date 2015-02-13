@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'support/attributes'
 
 describe User do
   context "invalid when" do
@@ -43,15 +44,20 @@ describe User do
     end
 
     it "requires to be unique and case insensitive" do
-      user1 = User.create name: "Example User",
-                          email: "user@example.com",
-                          password: "secret",
-                          password_confirmation: "secret"
+      user1 = User.create user_attributes
       user2 = User.new email: user1.email.upcase
 
       user2.valid?
 
       expect(user2.errors[:email].any?).to be_truthy
+    end
+  end
+
+  context "with example attributes" do
+    it "is valid" do
+      user = User.new user_attributes
+
+      expect(user.valid?).to be_truthy
     end
   end
 end
