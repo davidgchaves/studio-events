@@ -2,25 +2,25 @@ require 'rails_helper'
 require 'support/attributes'
 
 describe User do
-  context "invalid when" do
-    it "has a blank name" do
+  context "name" do
+    it "can't be empty" do
       user = User.new name: ""
 
       user.valid?
 
       expect(user.errors[:name].any?).to be_truthy
     end
+  end
 
-    it "has a blank email" do
+  context "email" do
+    it "can't be empty" do
       user = User.new email: ""
 
       user.valid?
 
       expect(user.errors[:email].any?).to be_truthy
     end
-  end
 
-  context "email" do
     it "accepts properly formatted emails" do
       valid_emails = ["moe.sTOO@stoogies.com", "moe.sTOO@st.o.gies.com"]
       valid_emails.each do |valid_email|
