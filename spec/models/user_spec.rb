@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'support/attributes'
 
 describe User do
-  context "name" do
+  describe "name" do
     it "can't be empty" do
       user = User.new name: ""
 
@@ -12,7 +12,7 @@ describe User do
     end
   end
 
-  context "email" do
+  describe "email" do
     it "can't be empty" do
       user = User.new email: ""
 
@@ -53,7 +53,7 @@ describe User do
     end
   end
 
-  context "password" do
+  describe "password" do
     it "can't be empty" do
       invalid_user = User.new password: ""
 
