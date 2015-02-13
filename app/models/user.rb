@@ -3,6 +3,6 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name
   validates :email, presence: true,
-                    format: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
+                    format: Email::FORMAT_REGEX,
                     uniqueness: { case_sensitive: false }
 end
