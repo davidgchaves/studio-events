@@ -57,9 +57,19 @@ group :development, :test do
   gem 'sqlite3'
 
   gem 'rspec-rails', '~> 3.1.0'
+
+  # Replaces Rails' default fixtures for feeding test data to the test suite with factories
+  gem 'factory_girl_rails', '~> 4.5.0'
 end
 
 group :test do
+  # Simulates how a user would interact with a website
   gem 'capybara', '~> 2.4.4'
+
+  # Generates names, email addresses, and other placeholders for factories
+  gem 'faker', '~> 1.4.3'
+
+  # Strategies for cleaning databases
+  gem 'database_cleaner', '~> 1.4.0'
 end
 
