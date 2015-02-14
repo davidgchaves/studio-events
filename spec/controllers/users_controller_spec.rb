@@ -20,12 +20,15 @@ describe UsersController do
   end
 
   describe "GET #show" do
+    let(:larry) { FactoryGirl.create :user, name: "Larry" }
+    before(:each) { get :show, id: larry }
+
     it "assigns the requested user" do
-      larry = FactoryGirl.create :user, name: "Larry"
-
-      get :show, id: larry
-
       expect(assigns :user).to eq larry
+    end
+
+    it "renders the :show template" do
+      expect(response).to render_template :show
     end
   end
 end
