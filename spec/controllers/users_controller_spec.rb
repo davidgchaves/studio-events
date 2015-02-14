@@ -18,4 +18,14 @@ describe UsersController do
       expect(response).to render_template :index
     end
   end
+
+  describe "GET #show" do
+    it "assigns the requested user" do
+      larry = FactoryGirl.create :user, name: "Larry"
+
+      get :show, id: larry
+
+      expect(assigns :user).to eq larry
+    end
+  end
 end
