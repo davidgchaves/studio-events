@@ -19,3 +19,17 @@ feature "Viewing the list of users" do
     end
   end
 end
+
+feature "Viewing a user's profile page" do
+  scenario "shows the user's details" do
+    larry = FactoryGirl.create :user, name: "Larry", email: "larry@example.com"
+    larry_mailto_link = "//a[contains(@href,'mailto:#{larry.email}')]"
+
+    visit user_url(larry)
+
+    within "#users" do
+      expect(page).to have_text larry.name
+      expect(page).to have_xpath larry_mailto_link
+    end
+  end
+end
