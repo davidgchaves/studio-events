@@ -11,5 +11,11 @@ describe UsersController do
 
       expect(assigns :users).to match_array [larry, moe]
     end
+
+    it "renders the :index template" do
+      get :index
+
+      expect(response).to render_template :index
+    end
   end
 end
