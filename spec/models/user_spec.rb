@@ -87,4 +87,10 @@ describe User do
       expect(user.valid?).to be_truthy
     end
   end
+
+  context "with factory attributes" do
+    it "is valid" do
+      expect(FactoryGirl.build :user).to be_valid
+    end
+  end
 end
