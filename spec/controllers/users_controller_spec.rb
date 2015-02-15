@@ -57,10 +57,16 @@ describe UsersController do
     end
 
     context "with an invalid user" do
-      it "does not save the new user to the database" do
-        invalid_user = FactoryGirl.attributes_for :invalid_user
+      let(:invalid_user) { FactoryGirl.attributes_for :invalid_user }
 
+      it "does not save the new user to the database" do
         expect{ post :create, user: invalid_user }.not_to change(User, :count)
+      end
+
+      it "re-renders the :new template" do
+        post :create, user: invalid_user
+
+        expect(response).to render_template :new
       end
     end
   end
