@@ -43,10 +43,16 @@ describe UsersController do
 
   describe "POST #create" do
     context "with a valid user" do
-      it "saves the new user to the database" do
-        valid_user = FactoryGirl.attributes_for :user
+      let(:valid_user) { FactoryGirl.attributes_for :user }
 
+      it "saves the new user to the database" do
         expect{ post :create, user: valid_user }.to change(User, :count).by 1
+      end
+
+      it "redirects to users#show" do
+        post :create, user: valid_user
+
+        expect(response).to redirect_to user_path(assigns :user)
       end
     end
   end
