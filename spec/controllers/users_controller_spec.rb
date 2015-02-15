@@ -40,4 +40,14 @@ describe UsersController do
       expect(response).to render_template :new
     end
   end
+
+  describe "POST #create" do
+    context "with a valid user" do
+      it "saves the new user to the database" do
+        valid_user = FactoryGirl.attributes_for :user
+
+        expect{ post :create, user: valid_user }.to change(User, :count).by 1
+      end
+    end
+  end
 end
