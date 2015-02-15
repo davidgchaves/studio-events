@@ -30,10 +30,14 @@ describe UsersController do
   end
 
   describe "GET #new" do
-    it "assigns a new user" do
-      get :new
+    before(:each) { get :new }
 
+    it "assigns a new user" do
       expect(assigns :user).to be_a_new User
+    end
+
+    it "renders the :new template" do
+      expect(response).to render_template :new
     end
   end
 end
