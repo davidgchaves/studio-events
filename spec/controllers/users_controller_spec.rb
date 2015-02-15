@@ -28,4 +28,12 @@ describe UsersController do
       expect(response).to render_template :show
     end
   end
+
+  describe "GET #new" do
+    it "assigns a new user" do
+      get :new
+
+      expect(assigns :user).to be_a_new User
+    end
+  end
 end
