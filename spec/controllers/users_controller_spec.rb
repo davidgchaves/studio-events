@@ -55,5 +55,13 @@ describe UsersController do
         expect(response).to redirect_to user_path(assigns :user)
       end
     end
+
+    context "with an invalid user" do
+      it "does not save the new user to the database" do
+        invalid_user = FactoryGirl.attributes_for :invalid_user
+
+        expect{ post :create, user: invalid_user }.not_to change(User, :count)
+      end
+    end
   end
 end
