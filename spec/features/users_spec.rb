@@ -33,3 +33,33 @@ feature "Viewing a user's profile page" do
     end
   end
 end
+
+feature "Creating a new user account" do
+  scenario "saves the user" do
+    visit root_url
+    click_link "Sign Up"
+
+    expect(current_path).to eq signup_path
+
+    within "#content-header" do
+      expect(page).to have_text "Sign Up"
+    end
+
+    fill_in "Name", with: "Larry"
+    fill_in "Email", with: "larry@example.com"
+    fill_in "Password", with: "supersecret"
+    fill_in "Confirm Password", with: "supersecret"
+
+    click_button "Create User"
+
+    expect(current_path).to eq user_path(User.last)
+
+    within "p.notice" do
+      expect(page).to have_text "Thanks for signing up!"
+    end
+
+    within "#users" do
+      expect(page).to have_text "Larry"
+    end
+  end
+end
