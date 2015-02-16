@@ -68,8 +68,9 @@ describe "Viewing an individual event" do
   end
 
   context "when is sold out" do
+    let(:event) { Event.create event_attributes(capacity: 3) }
+
     before(:example) do
-      event = Event.create event_attributes(capacity: 3)
       3.times { event.registrations.create registration_attributes }
 
       visit event_url(event)
