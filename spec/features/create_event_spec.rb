@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Creating a new event" do
-  before do
+  before(:example) do
     visit events_url
     click_link "Add New Event"
   end
@@ -19,7 +19,7 @@ describe "Creating a new event" do
   end
 
   context "on success" do
-    before do
+    before(:example) do
       fill_in "Name", with: "Code and Coffee"
       fill_in "Description", with: "Sling some code with a cup o' Joe!"
       fill_in "Location", with: "Portland, OR"
@@ -45,7 +45,7 @@ describe "Creating a new event" do
   end
 
   context "on failure" do
-    before do
+    before(:example) do
       fill_in "Name", with: ""
       fill_in "Description", with: "Sling some code with a cup o' Joe!"
 

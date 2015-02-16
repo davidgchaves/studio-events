@@ -4,7 +4,7 @@ require 'support/attributes'
 describe "Creating a new registration for an event" do
   let(:event) { Event.create event_attributes }
 
-  before do
+  before(:example) do
     visit event_url(event)
 
     click_link "Register!"
@@ -27,7 +27,7 @@ describe "Creating a new registration for an event" do
   end
 
   context "on success" do
-    before do
+    before(:example) do
       fill_in "Name", with: "Larry"
       fill_in "Email", with: "larry@stooges.com"
       select "Twitter", from: "How heard"
@@ -50,7 +50,7 @@ describe "Creating a new registration for an event" do
   end
 
   context "on failure" do
-    before do
+    before(:example) do
       fill_in "Name", with: ""
 
       click_button "Create Registration"

@@ -4,7 +4,7 @@ require "support/attributes"
 describe "Deleting an event" do
   let!(:event) { Event.create event_attributes }
 
-  before do
+  before(:example) do
     visit event_url(event)
     click_link "Delete"
   end

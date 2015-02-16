@@ -5,7 +5,7 @@ describe UsersController do
   describe "GET #index" do
     let(:larry) { FactoryGirl.create :user, name: "Larry" }
     let(:moe) { FactoryGirl.create :user, name: "Moe" }
-    before(:each) { get :index }
+    before(:example) { get :index }
 
     it "populates an array of all users" do
       expect(assigns :users).to match_array [larry, moe]
@@ -18,7 +18,7 @@ describe UsersController do
 
   describe "GET #show" do
     let(:larry) { FactoryGirl.create :user, name: "Larry" }
-    before(:each) { get :show, id: larry }
+    before(:example) { get :show, id: larry }
 
     it "assigns the requested user" do
       expect(assigns :user).to eq larry
@@ -30,7 +30,7 @@ describe UsersController do
   end
 
   describe "GET #new" do
-    before(:each) { get :new }
+    before(:example) { get :new }
 
     it "assigns a new user" do
       expect(assigns :user).to be_a_new User
