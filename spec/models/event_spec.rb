@@ -63,10 +63,12 @@ describe Event do
     end
   end
 
-  it "is free if the price is $0" do
-    event = Event.new price: 0
+  context "which costs $0" do
+    let(:event) { Event.new price: 0 }
 
-    expect(event.free?).to eq true
+    it "is free" do
+      expect(event).to be_free
+    end
   end
 
   it "is free if the price is blank" do
