@@ -18,6 +18,12 @@ describe Event do
     end
   end
 
+  describe "description" do
+    it "contains at least 25 characters" do
+      expect(subject).to validate_length_of(:description).is_at_least 25
+    end
+  end
+
   it "is free if the price is $0" do
     event = Event.new price: 0
 
@@ -54,14 +60,6 @@ describe Event do
     event3 = Event.create event_attributes(starts_at: 1.months.from_now)
 
     expect(Event.upcoming).to eq [event3, event2, event1]
-  end
-
-  it "requires a description with at least 25 characters" do
-    event = Event.new description: "X" * 24
-
-    event.valid?
-
-    expect(event.errors[:description].any?).to eq true
   end
 
   it "requires a price equal to $0 or higher" do
