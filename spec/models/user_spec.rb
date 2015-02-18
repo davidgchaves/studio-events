@@ -10,11 +10,7 @@ describe User do
 
   describe "email" do
     it "can't be empty" do
-      invalid_user = User.new email: ""
-
-      invalid_user.valid?
-
-      expect(invalid_user.errors[:email].any?).to be_truthy
+      expect(subject).to validate_presence_of :email
     end
 
     it "accepts properly formatted emails" do
