@@ -13,6 +13,10 @@ describe User do
       expect(subject).to validate_presence_of :email
     end
 
+    it "has to be (case insensitive) unique" do
+      expect(subject).to validate_uniqueness_of(:email).case_insensitive
+    end
+
     context "when properly formatted" do
       let(:valid_emails) { ["moe.sTOO@stoogies.com", "moe.sTOO@st.o.gies.com"] }
 
@@ -31,15 +35,6 @@ describe User do
           expect(subject).not_to allow_value(invalid_email).for :email
         end
       end
-    end
-
-    it "requires to be unique and case insensitive" do
-      valid_user = User.create user_attributes
-      invalid_user = User.new email: valid_user.email.upcase
-
-      invalid_user.valid?
-
-      expect(invalid_user.errors[:email].any?).to be_truthy
     end
   end
 
