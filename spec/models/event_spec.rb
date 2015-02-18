@@ -37,6 +37,12 @@ describe Event do
     end
   end
 
+  describe "image filename" do
+    it "can be blank" do
+      expect(subject).to allow_value("").for :image_file_name
+    end
+  end
+
   it "is free if the price is $0" do
     event = Event.new price: 0
 
@@ -73,14 +79,6 @@ describe Event do
     event3 = Event.create event_attributes(starts_at: 1.months.from_now)
 
     expect(Event.upcoming).to eq [event3, event2, event1]
-  end
-
-  it "accepts a blank image filename" do
-    event = Event.new image_file_name: ""
-
-    event.valid?
-
-    expect(event.errors[:image_file_name].any?).to eq false
   end
 
   it "accepts properly formatted image file names" do
