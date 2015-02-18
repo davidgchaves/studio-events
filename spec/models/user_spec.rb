@@ -51,10 +51,4 @@ describe User do
       expect(subject).to have_secure_password
     end
   end
-
-  context "with example attributes" do
-    it "is valid" do
-      expect(User.new user_attributes).to be_valid
-    end
-  end
 end
