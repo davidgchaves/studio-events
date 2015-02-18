@@ -6,6 +6,12 @@ describe Event do
     expect(subject).to have_many(:registrations).dependent :destroy
   end
 
+  describe "name" do
+    it "can't be blank" do
+      expect(subject).to validate_presence_of :name
+    end
+  end
+
   it "is free if the price is $0" do
     event = Event.new price: 0
 
@@ -42,14 +48,6 @@ describe Event do
     event3 = Event.create event_attributes(starts_at: 1.months.from_now)
 
     expect(Event.upcoming).to eq [event3, event2, event1]
-  end
-
-  it "requires a name" do
-    event = Event.new name: ""
-
-    event.valid?
-
-    expect(event.errors[:name].any?).to eq true
   end
 
   it "requires a description with at least 25 characters" do
