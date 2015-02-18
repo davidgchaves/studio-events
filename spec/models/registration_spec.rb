@@ -2,6 +2,14 @@ require 'rails_helper'
 require 'support/attributes'
 
 describe Registration do
+  let(:registration) { FactoryGirl.build :registration }
+
+  context "with factory attributes" do
+    it "is valid" do
+      expect(registration).to be_valid
+    end
+  end
+
   it "belongs to an event" do
     expect(subject).to belong_to :event
   end
