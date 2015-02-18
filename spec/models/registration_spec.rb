@@ -6,12 +6,10 @@ describe Registration do
     expect(subject).to belong_to :event
   end
 
-  it "requires a name" do
-    invalid_registration = Registration.new name: ""
-
-    invalid_registration.valid?
-
-    expect(invalid_registration.errors[:name].any?).to eq true
+  describe "name" do
+    it "can't be blank" do
+      expect(subject).to validate_presence_of :name
+    end
   end
 
   it "accepts properly formatted emails" do
