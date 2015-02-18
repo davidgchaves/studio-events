@@ -30,6 +30,13 @@ describe Event do
     end
   end
 
+  describe "capacity" do
+    it "is a positive integer number" do
+      expect(subject).to validate_numericality_of(:capacity).
+        is_greater_than(0).only_integer
+    end
+  end
+
   it "is free if the price is $0" do
     event = Event.new price: 0
 
@@ -66,24 +73,6 @@ describe Event do
     event3 = Event.create event_attributes(starts_at: 1.months.from_now)
 
     expect(Event.upcoming).to eq [event3, event2, event1]
-  end
-
-  context "requires a capacity that" do
-    it "is an integer number" do
-      event = Event.new capacity: -3.0
-
-      event.valid?
-
-      expect(event.errors[:capacity].any?).to eq true
-    end
-
-    it "is a positive number" do
-      event = Event.new capacity: 0
-
-      event.valid?
-
-      expect(event.errors[:capacity].any?).to eq true
-    end
   end
 
   it "accepts a blank image filename" do

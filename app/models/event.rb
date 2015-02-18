@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   validates_presence_of :location
   validates_length_of :description, minimum: 25
   validates_numericality_of :price, greater_than_or_equal_to: 0
-  validates :capacity, numericality: { only_integer: true, greater_than: 0 }
+  validates_numericality_of :capacity, greater_than: 0, only_integer: true
   validates :image_file_name, allow_blank: true, format: {
     with: /\w+\.(gif|jpg|png)\z/i,
     message: "must reference a GIF, JPG or PNG image" }
