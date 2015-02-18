@@ -79,10 +79,12 @@ describe Event do
     end
   end
 
-  it "is not free if the price is non-$0" do
-    event = Event.new price: 10.00
+  context "with a price higher than $0" do
+    let(:event) { Event.new price: 10.00 }
 
-    expect(event.free?).to eq false
+    it "is not free" do
+      expect(event).not_to be_free
+    end
   end
 
   it "is upcoming if the starts at date is in the future" do
