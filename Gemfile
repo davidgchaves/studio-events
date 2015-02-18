@@ -71,5 +71,7 @@ group :test do
 
   # Strategies for cleaning databases
   gem 'database_cleaner', '~> 1.4.0'
+
+  gem 'shoulda-matchers', '~> 2.8.0', require: false
 end
 
