@@ -2,6 +2,14 @@ require "rails_helper"
 require "support/attributes"
 
 describe Event do
+  let(:event) { FactoryGirl.build :event }
+
+  context "with factory attributes" do
+    it "is valid" do
+      expect(event).to be_valid
+    end
+  end
+
   it "has many (destroy dependent) registrations" do
     expect(subject).to have_many(:registrations).dependent :destroy
   end
