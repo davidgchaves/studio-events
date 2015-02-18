@@ -12,6 +12,12 @@ describe Event do
     end
   end
 
+  describe "location" do
+    it "can't be blank" do
+      expect(subject).to validate_presence_of :location
+    end
+  end
+
   it "is free if the price is $0" do
     event = Event.new price: 0
 
@@ -56,14 +62,6 @@ describe Event do
     event.valid?
 
     expect(event.errors[:description].any?).to eq true
-  end
-
-  it "requires a location" do
-    event = Event.new location: ""
-
-    event.valid?
-
-    expect(event.errors[:location].any?).to eq true
   end
 
   it "requires a price equal to $0 or higher" do
