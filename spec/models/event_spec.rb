@@ -10,6 +10,14 @@ describe Event do
     end
   end
 
+  context "with example attributes" do
+    let(:event) { Event.new event_attributes }
+
+    it "is valid" do
+      expect(event).to be_valid
+    end
+  end
+
   it "has many (destroy dependent) registrations" do
     expect(subject).to have_many(:registrations).dependent :destroy
   end
@@ -112,12 +120,6 @@ describe Event do
     it "returns upcoming events ordered with the most recently-upcoming event first" do
       expect(Event.upcoming).to eq [upcoming_event3, upcoming_event2, upcoming_event1]
     end
-  end
-
-  it "is valid with example attributes" do
-    event = Event.new event_attributes
-
-    expect(event.valid?).to eq true
   end
 
   it "calculates the available spots" do
