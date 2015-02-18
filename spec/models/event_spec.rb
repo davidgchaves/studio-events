@@ -136,10 +136,12 @@ describe Event do
     end
   end
 
-  it "is not sold out if there's available spots" do
-    event = FactoryGirl.create(:event, capacity: 500)
-    3.times { event.registrations.create registration_attributes }
+  context "with available spots" do
+    let(:event) { FactoryGirl.create(:event, capacity: 500) }
+    before(:example) { 3.times { event.registrations.create registration_attributes } }
 
-    expect(event).not_to be_sold_out
+    it "is not sold out" do
+      expect(event).not_to be_sold_out
+    end
   end
 end
