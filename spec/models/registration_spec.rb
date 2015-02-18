@@ -12,14 +12,15 @@ describe Registration do
     end
   end
 
-  it "accepts properly formatted emails" do
-    valid_emails = ["moe.sTOO@stoogies.com", "moe.sTOO@st.o.gies.com"]
-    valid_emails.each do |valid_email|
-      valid_registration = Registration.new email: valid_email
+  describe "email" do
+    context "when properly formatted" do
+      let(:valid_emails) { ["moe.sTOO@stoogies.com", "moe.sTOO@st.o.gies.com"] }
 
-      valid_registration.valid?
-
-      expect(valid_registration.errors[:email].any?).to eq false
+      it "is valid" do
+        valid_emails.each do |valid_email|
+          expect(subject).to allow_value(valid_email).for :email
+        end
+      end
     end
   end
 
