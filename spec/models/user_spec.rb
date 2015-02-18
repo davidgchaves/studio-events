@@ -2,6 +2,14 @@ require 'rails_helper'
 require 'support/attributes'
 
 describe User do
+  let(:user) { FactoryGirl.build :user }
+
+  context "with factory attributes" do
+    it "is valid" do
+      expect(user).to be_valid
+    end
+  end
+
   describe "name" do
     it "can't be empty" do
       expect(subject).to validate_presence_of :name
@@ -47,12 +55,6 @@ describe User do
   context "with example attributes" do
     it "is valid" do
       expect(User.new user_attributes).to be_valid
-    end
-  end
-
-  context "with factory attributes" do
-    it "is valid" do
-      expect(FactoryGirl.build :user).to be_valid
     end
   end
 end
