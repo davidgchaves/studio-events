@@ -1,7 +1,7 @@
 require "rails_helper"
 require "support/attributes"
 
-describe "An event" do
+describe Event do
   it "has many registrations" do
     event = Event.new event_attributes
 
