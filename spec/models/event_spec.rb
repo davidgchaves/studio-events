@@ -24,6 +24,12 @@ describe Event do
     end
   end
 
+  describe "price" do
+    it "is $0 or higher" do
+      expect(subject).to validate_numericality_of(:price).is_greater_than_or_equal_to 0
+    end
+  end
+
   it "is free if the price is $0" do
     event = Event.new price: 0
 
@@ -60,14 +66,6 @@ describe Event do
     event3 = Event.create event_attributes(starts_at: 1.months.from_now)
 
     expect(Event.upcoming).to eq [event3, event2, event1]
-  end
-
-  it "requires a price equal to $0 or higher" do
-    event = Event.new price: -1.00
-
-    event.valid?
-
-    expect(event.errors[:price].any?).to eq true
   end
 
   context "requires a capacity that" do
