@@ -71,10 +71,12 @@ describe Event do
     end
   end
 
-  it "is free if the price is blank" do
-    event = Event.new price: nil
+  context "with no price" do
+    let(:event) { Event.new price: nil }
 
-    expect(event.free?).to eq true
+    it "is free" do
+      expect(event).to be_free
+    end
   end
 
   it "is not free if the price is non-$0" do
