@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'support/attributes'
 
-describe "A registration" do
+describe Registration do
   it "belongs to an event" do
     event = Event.create event_attributes
 
