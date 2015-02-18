@@ -51,6 +51,16 @@ describe Event do
         end
       end
     end
+
+    context "when improperly formatted" do
+      let(:invalid_file_names) { %w[event .png .jpg .gif event.pdf event.doc] }
+
+      it "is invalid" do
+        invalid_file_names.each do |invalid_file_name|
+          expect(subject).not_to allow_value(invalid_file_name).for :image_file_name
+        end
+      end
+    end
   end
 
   it "is free if the price is $0" do
@@ -89,17 +99,6 @@ describe Event do
     event3 = Event.create event_attributes(starts_at: 1.months.from_now)
 
     expect(Event.upcoming).to eq [event3, event2, event1]
-  end
-
-  it "rejects improperly formatted image file names" do
-    file_names = %w[event .png .jpg .gif event.pdf event.doc]
-    file_names.each do |file_name|
-      event = Event.new image_file_name: file_name
-
-      event.valid?
-
-      expect(event.errors[:image_file_name].any?).to eq true
-    end
   end
 
   it "is valid with example attributes" do
