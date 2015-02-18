@@ -127,11 +127,13 @@ describe Event do
     expect(event.spots_left).to eq 5-3
   end
 
-  it "is sold out if there's no available spots" do
-    event = FactoryGirl.create(:event, capacity: 3)
-    3.times { event.registrations.create registration_attributes }
+  context "with no available spots" do
+    let(:event) { FactoryGirl.create(:event, capacity: 3) }
+    before(:example) { 3.times { event.registrations.create registration_attributes } }
 
-    expect(event).to be_sold_out
+    it "is sold out" do
+      expect(event).to be_sold_out
+    end
   end
 
   it "is not sold out if there's available spots" do
