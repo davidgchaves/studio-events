@@ -87,10 +87,12 @@ describe Event do
     end
   end
 
-  it "is upcoming if the starts at date is in the future" do
-    event = Event.create event_attributes(starts_at: 3.days.from_now)
+  context "upcoming query" do
+    let(:event) { Event.create event_attributes(starts_at: 3.days.from_now) }
 
-    expect(Event.upcoming).to include event
+    it "only returns future events" do
+      expect(Event.upcoming).to include event
+    end
   end
 
   it "is not upcoming if the starts at date is in the past" do
