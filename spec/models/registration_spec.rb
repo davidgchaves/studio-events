@@ -34,25 +34,11 @@ describe Registration do
     end
   end
 
-  it "rejects any how heard description that is not in the predetermined list" do
-    invalid_how_heards = %w[Internet Facebook Whatever]
-    invalid_how_heards.each do |invalid_how_heard|
-      invalid_registration = Registration.new how_heard: invalid_how_heard
+  describe "how heard" do
+    let(:valid_how_heards) { ["Newsletter", "Blog Post", "Twitter", "Web Search", "Friends/Coworker", "Other"] }
 
-      invalid_registration.valid?
-
-      expect(invalid_registration.errors[:how_heard].any?).to eq true
-    end
-  end
-
-  it "accepts any how heard description that is in the predetermined list" do
-    valid_how_heards = ["Newsletter", "Blog Post", "Twitter", "Web Search", "Friends/Coworker", "Other"]
-    valid_how_heards.each do |valid_how_heard|
-      valid_registration = Registration.new how_heard: valid_how_heard
-
-      valid_registration.valid?
-
-      expect(valid_registration.errors[:how_heard].any?).to eq false
+    it "is picked from a list of valid values" do
+      expect(subject).to validate_inclusion_of(:how_heard).in_array valid_how_heards
     end
   end
 
