@@ -88,17 +88,16 @@ describe Event do
   end
 
   context "upcoming query" do
-    let(:event) { Event.create event_attributes(starts_at: 3.days.from_now) }
+    let(:past_event) { Event.create starts_at: 3.days.ago }
+    let(:upcoming_event) { Event.create event_attributes(starts_at: 3.days.from_now) }
 
     it "only returns future events" do
-      expect(Event.upcoming).to include event
+      expect(Event.upcoming).to include upcoming_event
     end
-  end
 
-  it "is not upcoming if the starts at date is in the past" do
-    event = Event.create starts_at: 3.days.ago
-
-    expect(Event.upcoming).not_to include event
+    it "never returns past events" do
+      expect(Event.upcoming).not_to include past_event
+    end
   end
 
   it "returns upcoming events ordered with the most recently-upcoming event first" do
