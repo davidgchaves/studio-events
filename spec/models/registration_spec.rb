@@ -3,11 +3,7 @@ require 'support/attributes'
 
 describe Registration do
   it "belongs to an event" do
-    event = Event.create event_attributes
-
-    registration = event.registrations.new registration_attributes
-
-    expect(registration.event).to eq event
+    expect(subject).to belong_to :event
   end
 
   it "requires a name" do
