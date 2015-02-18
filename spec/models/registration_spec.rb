@@ -22,16 +22,15 @@ describe Registration do
         end
       end
     end
-  end
 
-  it "rejects improperly formatted emails" do
-    invalid_emails = ["@", "moe stoo@stoogies.com", "moe.stoo@sto ogies.com"]
-    invalid_emails.each do |invalid_email|
-      invalid_registration = Registration.new email: invalid_email
+    context "when improperly formatted" do
+      let(:invalid_emails) { ["@", "moe stoo@stoogies.com", "moe.stoo@sto ogies.com"] }
 
-      invalid_registration.valid?
-
-      expect(invalid_registration.errors[:email].any?).to eq true
+      it "is invalid" do
+        invalid_emails.each do |invalid_email|
+          expect(subject).not_to allow_value(invalid_email).for :email
+        end
+      end
     end
   end
 

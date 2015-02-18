@@ -4,6 +4,6 @@ class Registration < ActiveRecord::Base
   HOW_HEARD_OPTIONS = ["Newsletter", "Blog Post", "Twitter", "Web Search", "Friends/Coworker", "Other"]
 
   validates_presence_of :name
-  validates :email, format: Email::FORMAT_REGEX
+  validates_format_of :email, with: Email::FORMAT_REGEX
   validates :how_heard, inclusion: { in: HOW_HEARD_OPTIONS }
 end
