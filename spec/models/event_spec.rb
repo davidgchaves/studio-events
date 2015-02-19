@@ -79,27 +79,29 @@ describe Event do
     end
   end
 
-  context "which costs $0" do
-    let(:event) { Event.new price: 0 }
+  describe "is free?" do
+    context "when costs $0" do
+      let(:event) { Event.new price: 0 }
 
-    it "is free" do
-      expect(event).to be_free
+      it "is free" do
+        expect(event).to be_free
+      end
     end
-  end
 
-  context "with no price" do
-    let(:event) { Event.new price: nil }
+    context "when has no price" do
+      let(:event) { Event.new price: nil }
 
-    it "is free" do
-      expect(event).to be_free
+      it "is free" do
+        expect(event).to be_free
+      end
     end
-  end
 
-  context "with a price higher than $0" do
-    let(:event) { Event.new price: 10.00 }
+    context "when has a price higher than $0" do
+      let(:event) { Event.new price: 10.00 }
 
-    it "is not free" do
-      expect(event).not_to be_free
+      it "is not free" do
+        expect(event).not_to be_free
+      end
     end
   end
 
