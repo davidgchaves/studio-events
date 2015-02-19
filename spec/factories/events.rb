@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :event do
-    sequence(:name) { |n| "BugSmash #{n}" }
-    location "Denver"
-    price 10.00
-    sequence(:description) { |n| "A fun evening of bug smashing #{n}" }
-    starts_at 10.days.from_now
+    name { Faker::Name.first_name }
+    location { Faker::Address.city }
+    price { Faker::Commerce.price }
+    description { Faker::Lorem.sentence(8, false, 0) }
+    starts_at { Faker::Date.forward(10) }
     image_file_name ""
     capacity 50
   end
