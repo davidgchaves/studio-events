@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :registration do
     association :event
-    sequence(:name) { |n| "Moe #{n}" }
-    sequence(:email) { |n| "moe#{n}@stoogies.com" }
+    name { Faker::Name.first_name }
+    email { Faker::Internet.email }
     how_heard "Web Search"
   end
 end
