@@ -127,9 +127,9 @@ describe Event do
 
   context "upcoming query" do
     let(:past_event) { Event.create starts_at: 3.days.ago }
-    let(:upcoming_event1) { Event.create event_attributes(starts_at: 3.months.from_now) }
-    let(:upcoming_event2) { Event.create event_attributes(starts_at: 2.months.from_now) }
-    let(:upcoming_event3) { Event.create event_attributes(starts_at: 1.months.from_now) }
+    let(:upcoming_event1) { FactoryGirl.create(:event, starts_at: 3.months.from_now) }
+    let(:upcoming_event2) { FactoryGirl.create(:event, starts_at: 2.months.from_now) }
+    let(:upcoming_event3) { FactoryGirl.create(:event, starts_at: 1.months.from_now) }
 
     it "only returns future events" do
       expect(Event.upcoming).to include upcoming_event1
