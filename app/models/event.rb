@@ -20,10 +20,15 @@ class Event < ActiveRecord::Base
   end
 
   def spots_left
-    capacity - registrations.size
+    capacity - number_of_registrations
   end
 
   def sold_out?
     spots_left.zero?
   end
+
+  private
+    def number_of_registrations
+      registrations.size
+    end
 end

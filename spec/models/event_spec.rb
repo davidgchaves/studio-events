@@ -145,9 +145,9 @@ describe Event do
   end
 
   it "calculates the available spots" do
-    event = FactoryGirl.create(:event, capacity: 5)
-    3.times { event.registrations.create registration_attributes }
+    expect(event).to receive(:capacity).and_return(5).once
+    expect(event).to receive(:number_of_registrations).and_return(3).once
 
-    expect(event.spots_left).to eq 5-3
+    expect(event.spots_left).to eq 2
   end
 end
