@@ -40,10 +40,16 @@ describe UsersController do
   end
 
   describe "GET #new" do
-    before(:example) { get :new }
+    let(:new_user) { instance_double User }
 
-    it "assigns a new user" do
-      expect(assigns :user).to be_a_new User
+    before(:example) do
+      allow(User).to receive(:new).and_return new_user
+      get :new
+    end
+
+    it "assigns a new user to @user" do
+      expect(User).to have_received(:new)
+      expect(assigns :user).to match new_user
     end
 
     it "renders the :new template" do
