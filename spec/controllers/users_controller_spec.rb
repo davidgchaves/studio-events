@@ -22,11 +22,16 @@ describe UsersController do
   end
 
   describe "GET #show" do
-    let(:larry) { FactoryGirl.create :user, name: "Larry" }
-    before(:example) { get :show, id: larry }
+    let(:larry) { instance_double User }
 
-    it "assigns the requested user" do
-      expect(assigns :user).to eq larry
+    before(:example) do
+      allow(User).to receive(:find).and_return larry
+      get :show, id: larry
+    end
+
+    it "assigns the requested user to @user" do
+      expect(User).to have_received(:find)
+      expect(assigns :user).to match larry
     end
 
     it "renders the :show template" do
