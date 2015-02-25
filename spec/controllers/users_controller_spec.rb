@@ -3,11 +3,16 @@ require 'rails_helper'
 describe UsersController do
 
   describe "GET #index" do
-    let(:larry) { FactoryGirl.create :user, name: "Larry" }
-    let(:moe) { FactoryGirl.create :user, name: "Moe" }
-    before(:example) { get :index }
+    let(:larry) { instance_double User }
+    let(:moe) { instance_double User }
 
-    it "populates an array of all users" do
+    before(:example) do
+      allow(User).to receive(:all).and_return [larry, moe]
+      get :index
+    end
+
+    it "assigns an all users array to @users" do
+      expect(User).to have_received :all
       expect(assigns :users).to match_array [larry, moe]
     end
 
