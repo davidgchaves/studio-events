@@ -50,7 +50,7 @@ feature "Creating a new user account" do
     fill_in "Password", with: "supersecret"
     fill_in "Confirm Password", with: "supersecret"
 
-    click_button "Create User"
+    click_button "Create Account"
 
     expect(current_path).to eq user_path(User.last)
 
