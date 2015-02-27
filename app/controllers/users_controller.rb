@@ -26,8 +26,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find params[:id]
-    @user.update user_params
-    redirect_to @user, notice: "Account successfully updated!"
+    if @user.update user_params
+      redirect_to @user, notice: "Account successfully updated!"
+    else
+      render :edit
+    end
   end
 
   private
