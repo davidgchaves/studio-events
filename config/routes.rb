@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  root "events#index"
+  root to: "events#index"
 
   resources :events do
-    resources :registrations
+    resources :registrations, only: [:index, :new, :create]
   end
 
-  get "signup" => "users#new"
-  resources :users
+  get "signup", to: "users#new"
+  resources :users, only: [:index, :show, :new, :create]
 end
